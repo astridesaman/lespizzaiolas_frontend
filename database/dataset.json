@@ -1,120 +1,120 @@
 [
     {
-        "id": "1",
+        "id": 1,
         "name": "Cupido",
         "description": "Tomate, mozzarella, fromage, jambon de volaille, \u0153uf, huile d'olive.",
         "price": 2600
     },
     {
-        "id": "2",
+        "id": 2,
         "name": "Napoli",
         "description": "Tomate, mozzarella, fromage, ail, anchois, huile d'olive.",
         "price": 2800
     },
     {
-        "id": "3",
+        "id": 3,
         "name": "Cinque Formaggi",
         "description": "Cheddar, mozzarella, crottin, fondu, fromage, huile d'olive.",
         "price": 2600
     },
     {
-        "id": "4",
+        "id": 4,
         "name": "Buon Gusto",
         "description": "Tomate, mozzarella, fromage, crevettes, moules, huile d'olive.",
         "price": 2900
     },
     {
-        "id": "5",
+        "id": 5,
         "name": "Casanova (entour\u00e9e de fromage)",
         "description": "Tomate, mozzarella, fromage, chorizo, merguez, oignon, poivron, huile d'olive.",
         "price": 2800
     },
     {
-        "id": "6",
+        "id": 6,
         "name": "Insieme",
         "description": "Tomate, fromage, poulet, crevettes, jambon de volaille, poivron, huile d'olive.",
         "price": 3000
     },
     {
-        "id": "7",
+        "id": 7,
         "name": "Pancetta",
         "description": "Base sauce tomate, mozzarella, pancetta (ou lardons), oignons caram\u00e9lis\u00e9s, roquette, parmesan, huile d'olive, poivre noir.",
         "price": 2700
     },
     {
-        "id": "8",
+        "id": 8,
         "name": "Vegetariana",
         "description": "Tomate (en rondelle), mozzarella, fromage, ma\u00efs doux, c\u00e2pres, ail persill\u00e9, oignons, poivrons, huile d'olive.",
         "price": 2300
     },
     {
-        "id": "9",
+        "id": 9,
         "name": "Te Quiero (entour\u00e9e de saucisses)",
         "description": "Tomate, mozzarella, fromage, jambon de volaille, poivrons, huile d'olive.",
         "price": 3200
     },
     {
-        "id": "10",
+        "id": 10,
         "name": "La Calzone",
         "description": "Tomate, mozzarella, fromage, \u0153uf, champignons de Paris, jambon, huile d'olive.",
         "price": 2600
     },
     {
-        "id": "11",
+        "id": 11,
         "name": "La Dolomita",
         "description": "Base sauce tomate, mozzarella, charcuterie de montagne, pommes de terre tranch\u00e9es fines, fromage de montagne, huile d'olive, romarin frais.",
         "price": 3200
     },
     {
-        "id": "12",
+        "id": 12,
         "name": "La Venezia",
         "description": "Base sauce tomate, mozzarella, anchois, crevettes, moules, calamars, c\u00e2pres, ail, persil frais, huile d'olive.",
         "price": 4450
     },
     {
-        "id": "13",
+        "id": 13,
         "name": "La Broussarde",
         "description": "Base cr\u00e8me fra\u00eeche, viande de cerf, patates douces, oignons rouges, fromage.",
         "price": 2600
     },
     {
-        "id": "14",
+        "id": 14,
         "name": "Porc au Sucre",
         "description": "Porc marin\u00e9 au sucre, oignons caram\u00e9lis\u00e9s, fromage, sauce barbecue maison.",
         "price": 2000
     },
     {
-        "id": "15",
+        "id": 15,
         "name": "Poulet Soyo",
         "description": "Poulet marin\u00e9 soyo, mozzarella, oignons rouges, sauce soyo, coriandre, huile d'olive.",
         "price": 2200
     },
     {
-        "id": "16",
+        "id": 16,
         "name": "La Crunchy",
         "description": "Base cr\u00e8me fra\u00eeche, mozzarella, pommes de terre frites, lardons, oignons caram\u00e9lis\u00e9s, fromage r\u00e2p\u00e9, herbes de Provence.",
         "price": 2700
     },
     {
-        "id": "17",
+        "id": 17,
         "name": "Teneramente",
         "description": "Base sauce tomate, mozzarella, fromage, crevettes, chair de crabe, citron, tomates fra\u00eeches, huile d'olive.",
         "price": 4600
     },
     {
-        "id": "18",
+        "id": 18,
         "name": "Reale",
         "description": "Tomate, mozzarella, fromage, crevettes, moules, huile d'olive.",
         "price": 3800
     },
     {
-        "id": "19",
+        "id": 19,
         "name": "La sp\u00e9ciale Saumon",
         "description": "Base cr\u00e8me fra\u00eeche, mozzarella, saumon fum\u00e9, c\u00e2pres, oignons rouges, aneth frais, zeste de citron, huile d'olive, poivre noir.",
         "price": 3800
     },
     {
-        "id": "20",
+        "id": 20,
         "name": "La Pescanova",
         "description": "Base cr\u00e8me fra\u00eeche, poulet grill\u00e9, persillade de persil et ail, mozzarella, huile d'olive, sel et poivre noir.",
         "price": 3900

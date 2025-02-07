@@ -2,13 +2,13 @@ import json
 
 data = [
         {
-            "id": "1",
+            "id": 1,
             "name": "Cupido",
             "description": "Tomate, mozzarella, fromage, jambon de volaille, œuf, huile d'olive.",
             "price": 2600
         },
         {
-            "id": "2",
+            "id": 2,
             "name": "Napoli",
             "description": "Tomate, mozzarella, fromage, ail, anchois, huile d'olive.",
             "price": 2800
