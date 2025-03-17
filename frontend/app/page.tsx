@@ -17,7 +17,6 @@ const App: React.FC = () => {
       <Navbar />
       <Hero />
       <Products/>
-      <History/>
       <Values/>
       <Contact/>
       <FoodTruckMap/>

@@ -28,7 +28,7 @@ body {
   }
 
   .nav-li {
-    @apply text-neutral-400 hover:text-white max-sm:hover:bg-black-500 max-sm:w-full max-sm:rounded-md py-2 max-sm:px-5;
+    @apply text-neutral-400 hover:text-white max-sm:w-full max-sm:rounded-md py-2 max-sm:px-5;
     font-family: 'Lobster',cursive;
   
   }
