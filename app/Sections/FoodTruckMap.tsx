@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import dynamic from "next/dynamic";
 import "leaflet/dist/leaflet.css";
 
 interface Location {
@@ -11,25 +11,28 @@ interface Location {
   lng: number;
 }
 
+// Import dynamique du MapContainer et ses composants
+const MapContainer = dynamic(() => import("react-leaflet").then(mod => mod.MapContainer), { ssr: false });
+const TileLayer = dynamic(() => import("react-leaflet").then(mod => mod.TileLayer), { ssr: false });
+const Marker = dynamic(() => import("react-leaflet").then(mod => mod.Marker), { ssr: false });
+const Popup = dynamic(() => import("react-leaflet").then(mod => mod.Popup), { ssr: false });
+
 const FoodTruckMap: React.FC = () => {
   const [L, setL] = useState<any>(null);
   const [customIcon, setCustomIcon] = useState<any>(null);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      import("leaflet").then((leaflet) => {
-        setL(leaflet);
-        setCustomIcon(
-          new leaflet.Icon({
-            iconUrl: "https://cdn-icons-png.flaticon.com/512/2942/2942262.png",
-            iconSize: [40, 40],
-          })
-        );
-      });
-    }
+    import("leaflet").then((leaflet) => {
+      setL(leaflet);
+      setCustomIcon(
+        new leaflet.Icon({
+          iconUrl: "https://cdn-icons-png.flaticon.com/512/2942/2942262.png",
+          iconSize: [40, 40],
+        })
+      );
+    });
   }, []);
 
-  // Coordonnées des emplacements du food truck
   const foodTruckLocations: Location[] = [
     { id: 1, name: "Marché de Moselle", lat: -22.2712, lng: 166.4382 },
     { id: 2, name: "Événement au Centre Ville", lat: -22.255, lng: 166.450 },
@@ -43,16 +46,15 @@ const FoodTruckMap: React.FC = () => {
 
       <div className="flex justify-center">
         <div className="w-full md:w-3/4 h-96">
-          {L && (
+          {L && customIcon && (
             <MapContainer center={[-22.2712, 166.4382]} zoom={13} style={{ height: "100%", width: "100%" }}>
               <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-              {customIcon &&
-                foodTruckLocations.map((location) => (
-                  <Marker key={location.id} position={[location.lat, location.lng]} icon={customIcon}>
-                    <Popup>{location.name}</Popup>
-                  </Marker>
-                ))}
+              {foodTruckLocations.map((location) => (
+                <Marker key={location.id} position={[location.lat, location.lng]} icon={customIcon}>
+                  <Popup>{location.name}</Popup>
+                </Marker>
+              ))}
             </MapContainer>
           )}
         </div>

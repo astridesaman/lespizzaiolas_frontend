@@ -18,7 +18,7 @@ const Hero: React.FC = () => {
           L'authenticité de nos pizzas cuites au feu de bois&nbsp;
         </h1>
         <p className="text-lg sm:text-xl mt-4 max-w-lg">
-          Découvrez nos pizzas artisanales préparées avec passion et cuites au feu de bois pour un goût inégalé. <span role="img" aria-label="pizza">🍕</span>
+        Savourez nos pizzas artisanales, façonnées avec passion et cuites au feu de bois. <span role="img" aria-label="pizza">🍕</span>
           <span role="img" aria-label="feu">🔥</span>
         </p>
 
@@ -29,7 +29,7 @@ const Hero: React.FC = () => {
           className="mt-6 bg-orange-600 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition duration-300 hover:bg-orange-700 focus:ring-4 focus:ring-orange-400"
           aria-label="Télécharger notre menu au format PDF"
         >
-          Commandez maintenant 
+          Télécharger le menu
         </a>
       </motion.div>
 

@@ -116,7 +116,7 @@ const Products: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Commander
+                Ajouter au panier
               </motion.a>
             </div>
           </motion.div>
