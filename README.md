@@ -1,63 +1,37 @@
-# Les Pizzaiolas App
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Description
-Les Pizzaiolas App is a mobile application designed to help users order pizzas from their favorite local pizzerias. The app provides a user-friendly interface to browse menus, customize orders, and track delivery status.
+## Getting Started
 
-## Features
-- Browse pizzeria menus
-- Customize pizza orders
-- Track order status
-- User authentication and profile management
-- Payment integration
+First, run the development server:
 
-## Installation
-To install and run the app locally, follow these steps:
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/yourusername/lespizzaiolas_app.git
-    ```
-2. Navigate to the project directory:
-    ```bash
-    cd lespizzaiolas_app
-    ```
-3. Install dependencies:
-    ```bash
-    npm install
-    ```
-4. Run the app:
-    ```bash
-    npm start
-    ```
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Usage
-1. Open the app on your mobile device.
-2. Sign up or log in to your account.
-3. Browse the menu of your favorite pizzeria.
-4. Customize your pizza and add it to the cart.
-5. Proceed to checkout and make the payment.
-6. Track the status of your order in real-time.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## Contributing
-Contributions are welcome! Please follow these steps to contribute:
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-1. Fork the repository.
-2. Create a new branch:
-    ```bash
-    git checkout -b feature/your-feature-name
-    ```
-3. Make your changes and commit them:
-    ```bash
-    git commit -m "Add your message here"
-    ```
-4. Push to the branch:
-    ```bash
-    git push origin feature/your-feature-name
-    ```
-5. Open a pull request.
+## Learn More
 
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+To learn more about Next.js, take a look at the following resources:
 
-## Contact
-For any questions or feedback, please contact us at support@lespizzaiolas.com.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# lespizzaiolas_frontend
