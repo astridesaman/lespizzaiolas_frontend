@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Footer: React.FC = () => {
   return (
@@ -25,9 +26,11 @@ const Footer: React.FC = () => {
             rel="noopener noreferrer"
             aria-label="Facebook"
           >
-            <img
+            <Image
               src="/assets/icons8-facebook-50.svg"
               alt="Facebook"
+              width={40}
+              height={40}
               className="w-8 h-8 group-hover:scale-110 group-hover:brightness-75 transition-transform duration-300"
             />
           </a>
@@ -40,9 +43,11 @@ const Footer: React.FC = () => {
             rel="noopener noreferrer"
             aria-label="Instagram"
           >
-            <img
+            <Image
               src="/assets/instagram.svg"
               alt="Instagram"
+              width={40}
+              height={40}
               className="w-8 h-8 group-hover:scale-110 group-hover:brightness-75 transition-transform duration-300"
             />
           </a>
@@ -55,9 +60,11 @@ const Footer: React.FC = () => {
             rel="noopener noreferrer"
             aria-label="TikTok"
           >
-            <img
+            <Image
               src="/assets/icons8-tiktok (1).svg"
               alt="TikTok"
+              width={40}
+              height={40}
               className="w-10 h-10 group-hover:scale-110 group-hover:brightness-75 transition-transform duration-300"
             />
           </a>

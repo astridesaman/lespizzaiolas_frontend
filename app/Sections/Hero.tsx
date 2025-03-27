@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const Hero: React.FC = () => {
   return (
@@ -18,7 +19,8 @@ const Hero: React.FC = () => {
           L'authenticité de nos pizzas cuites au feu de bois&nbsp;
         </h1>
         <p className="text-lg sm:text-xl mt-4 max-w-lg">
-        Savourez nos pizzas artisanales, façonnées avec passion et cuites au feu de bois. <span role="img" aria-label="pizza">🍕</span>
+          Savourez nos pizzas artisanales, façonnées avec passion et cuites au feu de bois.{" "}
+          <span role="img" aria-label="pizza">🍕</span>
           <span role="img" aria-label="feu">🔥</span>
         </p>
 
@@ -34,12 +36,14 @@ const Hero: React.FC = () => {
       </motion.div>
 
       {/* Image de fond */}
-      <img
-        src="DSC_1943.jpeg"
+      <Image
+        src="/four_a_bois.jpeg"  // Assure-toi que le chemin d'accès est correct
         alt="Four à bois"
         className="absolute inset-0 w-full h-full object-cover z-[-1] bg-fixed"
         loading="lazy"
         aria-hidden="true"
+        width={1920}   // Définis la largeur de l'image en pixels
+        height={1080}  // Définis la hauteur de l'image en pixels
       />
     </section>
   );

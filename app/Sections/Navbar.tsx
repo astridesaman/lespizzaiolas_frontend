@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { navLinks } from '../constants';
+import Image from 'next/image';
 
 const NavItems = ({ onClick = () => {} }) => (
   <ul className="nav-ul">
@@ -33,7 +34,7 @@ const Navbar = () => {
             href="/"
             className="text-neutral-400 font-bold text-xl hover:text-white transition-colors"
           >
-            <img
+            <Image
               alt="Les Pizzaiolas Logo"
               src="/Les_Pizzaiolas_Logo_Branding.png"
               width={70}
@@ -46,10 +47,11 @@ const Navbar = () => {
             className="text-neutral-400 hover:text-white focus:outline-none sm:hidden flex"
             aria-label="Toggle menu"
           >
-            <img
-              src={isOpen ? 'assets/close.svg' : 'assets/menu.svg'}
+            <Image
+              src={isOpen ? '/assets/close.svg' : '/assets/menu.svg'}
               alt="toggle"
-              className="w-6 h-6"
+              width={24} 
+              height={24}
             />
           </button>
 

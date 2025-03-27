@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 interface Product {
   id: string;
@@ -73,9 +74,7 @@ const Products: React.FC = () => {
           <motion.button
             key={category}
             onClick={() => setSelectedCategory(category as 'classique' | 'signature' | 'sucree')}
-            className={`py-2 px-6 rounded-full text-lg font-semibold ${
-              selectedCategory === category ? 'bg-orange-500 text-white shadow-lg' : 'text-gray-300 hover:text-white'
-            } transition-transform duration-300`}
+            className={`py-2 px-6 rounded-full text-lg font-semibold ${selectedCategory === category ? 'bg-orange-500 text-white shadow-lg' : 'text-gray-300 hover:text-white'} transition-transform duration-300`}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             aria-label={`Afficher les pizzas ${category}`}
@@ -101,9 +100,11 @@ const Products: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
-            <img
+            <Image
               src={product.image}
               alt={`Image de ${product.name}`}
+              width={400}  // Ajuste la taille de l'image selon tes besoins
+              height={224} // Ajuste la taille de l'image selon tes besoins
               className="w-full h-56 object-cover rounded-t-2xl"
             />
             <div className="p-6">

@@ -18,8 +18,8 @@ const Marker = dynamic(() => import("react-leaflet").then(mod => mod.Marker), { 
 const Popup = dynamic(() => import("react-leaflet").then(mod => mod.Popup), { ssr: false });
 
 const FoodTruckMap: React.FC = () => {
-  const [L, setL] = useState<any>(null);
-  const [customIcon, setCustomIcon] = useState<any>(null);
+  const [L, setL] = useState<typeof import("leaflet") | null>(null);
+  const [customIcon, setCustomIcon] = useState<L.Icon | null>(null);
 
   useEffect(() => {
     import("leaflet").then((leaflet) => {

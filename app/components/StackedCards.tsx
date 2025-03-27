@@ -19,7 +19,7 @@ const StackedCards: React.FC = () => {
           card.style.transform = "translateY(-120vh) rotate(-48deg)";
         } else {
           card.style.transform = `rotate(${angle}deg)`;
-          angle -= 10;
+          angle -= 7;
           card.style.zIndex = `${cardsRef.current.length - index}`;
         }
       }
