@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         generalsans: ['General Sans', 'sans-serif'],
         poppins: ["Poppins", "sans-serif"],
+        lobster: ['Lobster', 'cursive']
       },
       colors: {
         black: {

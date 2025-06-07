@@ -3,7 +3,7 @@ import StackedCards from '../components/StackedCards'
 
 const Values = () => {
   return (
-    <div>
+    <div id="valeurs">
       <StackedCards/>
     </div>
   )

@@ -24,22 +24,22 @@ body {
   }
 
   .nav-ul {
-    @apply flex flex-col items-center gap-4 sm:flex-row md:gap-6 relative z-20;
+  @apply flex flex-col items-center gap-4 sm:flex-row md:gap-6 relative z-20 text-center;
   }
 
+
   .nav-li {
-    @apply text-neutral-400 hover:text-white max-sm:w-full max-sm:rounded-md py-2 max-sm:px-5;
-    font-family: 'Lobster',cursive;
-  
+    @apply text-neutral-400 hover:text-white max-sm:w-full max-sm:rounded-md py-2 max-sm:px-5 font-lobster font-bold transition-colors duration-300 ease-in-out;
   }
 
   .nav-li_a {
-    @apply text-lg md:text-base hover:text-white transition-colors;
+  @apply text-lg md:text-base hover:text-white transition-colors block;
   }
 
   .nav-sidebar {
-    @apply absolute left-0 right-0 bg-black-200 backdrop-blur-sm transition-all duration-300 ease-in-out overflow-hidden z-20 mx-auto sm:hidden block;
+  @apply absolute left-0 right-0 bg-neutral-800 backdrop-blur-sm transition-all duration-300 ease-in-out overflow-hidden z-20 mx-auto sm:hidden block;
   }
+
 
   .text-gray_gradient {
     @apply bg-gradient-to-r from-[#BEC1CF] from-60% via-[#D5D8EA] via-60% to-[#D5D8EA] to-100% bg-clip-text text-transparent;
@@ -82,10 +82,6 @@ body {
 
   .field-btn_arrow {
       @apply w-7 h-7 object-contain invert brightness-0;
-  }
-
-  .tech-logo {
-    @apply w-10 h-10 rounded-md p-2 bg-neutral-100 bg-opacity-10 backdrop-filter backdrop-blur-lg flex justify-center items-center;
   }
 
  /* contact section */
@@ -145,7 +141,17 @@ body {
   color: #ff6700;
 }
 
-.history-values-container {
+.pizzas-moment {
+  @apply grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10;
+}
+.pizza-card {
+  @apply bg-black-200 p-5 rounded-lg shadow-lg text-white transition-transform hover:scale-105;
+}
+.pizza-card img {
+  @apply rounded-md mb-4;
+}
+
+.values-container {
   padding: 50px 20px;
   background-color: #ff6700; /* Couleur en lien avec le thème des Pizzaiolas */
   ; /* Couleur de fond */
@@ -153,11 +159,11 @@ body {
   text-align: center;
 }
 
-.history-values-container img {
+.values-container img {
   transition: transform 0.3s ease;
 }
 
-.history-values-container img:hover {
+.values-container img:hover {
   transform: scale(1.05); /* Zoom léger au survol */
 }
 
@@ -177,7 +183,6 @@ body {
   padding: 20px;
 }
 
-.history,
 .values {
   background-color: #fff;
   padding: 20px;
@@ -185,14 +190,12 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.history h3,
 .values h3 {
   font-size: 1.5rem;
   margin-bottom: 10px;
   color: #333;
 }
 
-.history p,
 .values p {
   font-size: 1rem;
   line-height: 1.6;
@@ -203,11 +206,6 @@ body {
   .content-wrapper {
     flex-direction: row;
     justify-content: space-between;
-  }
-
-  .history,
-  .values {
-    width: 48%;
   }
 }
 

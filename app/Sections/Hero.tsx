@@ -1,50 +1,86 @@
-import React from "react";
-import { motion } from "framer-motion";
-import Image from "next/image";
+'use client';
+
+import React from 'react';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { section } from 'framer-motion/client';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative w-full h-screen flex items-center justify-center text-center text-white">
-      {/* Overlay sombre pour améliorer la lisibilité */}
-      <div className="absolute inset-0 bg-black bg-opacity-50 z-0"></div>
+    <section className="relative flex items-center justify-center min-h-screen text-white overflow-hidden">
+      {/* Arrière-plan animé avec effet de zoom doux */}
+      <div className="absolute inset-0 z-0">
+        <motion.div
+          className="absolute inset-0"
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{
+            duration: 10,
+            ease: 'easeInOut',
+            repeat: Infinity,
+            repeatType: 'reverse',
+          }}
+        >
+          <Image
+            src="/background.jpg"
+            alt="Fond de pizza au feu de bois"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/60" />
+        </motion.div>
+      </div>
 
-      {/* Contenu principal avec animations */}
+
+
+      {/* Contenu principal avec animation d’entrée */}
       <motion.div
-        className="relative z-10 flex flex-col items-center px-6 sm:px-12"
+        className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 text-center"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
       >
-        <h1 className="text-3xl sm:text-5xl font-bold drop-shadow-lg">
-          L'authenticité de nos pizzas cuites au feu de bois&nbsp;
-        </h1>
-        <p className="text-lg sm:text-xl mt-4 max-w-lg">
-          Savourez nos pizzas artisanales, façonnées avec passion et cuites au feu de bois.{" "}
-          <span role="img" aria-label="pizza">🍕</span>
-          <span role="img" aria-label="feu">🔥</span>
-        </p>
+        <motion.h1
+          className="text-3xl sm:text-5xl font-bold text-white drop-shadow-xl"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.3 }}
+        >
+          L'authenticité de nos pizzas cuites au feu de bois
+        </motion.h1>
 
-        {/* Bouton d'action amélioré */}
-        <a
+        <motion.p
+          className="text-lg sm:text-xl text-white mt-6 max-w-xl drop-shadow-md"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.6 }}
+        >
+          Retrouvez-nous principalement au marché de Moselle, mais aussi dans d'autres lieux
+          <span role="img" aria-label="pizza"> 🍕</span>
+          <span role="img" aria-label="feu">🔥</span>
+        </motion.p>
+
+        {/* Bouton d'action animé */}
+        <motion.a
           href="/menu.pdf"
           download
-          className="mt-6 bg-orange-600 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition duration-300 hover:bg-orange-700 focus:ring-4 focus:ring-orange-400"
+          className="mt-8 bg-orange-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-orange-700 transition duration-300 focus:ring-4 focus:ring-orange-300"
           aria-label="Télécharger notre menu au format PDF"
+          initial={{ scale: 1 }}
+          animate={{ scale: [1, 1.02, 1] }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            repeatType: 'reverse',
+            ease: 'easeInOut',
+          }}
+          whileHover={{ scale: 1.07 }}
+          whileTap={{ scale: 0.95 }}
         >
           Télécharger le menu
-        </a>
+        </motion.a>
       </motion.div>
-
-      {/* Image de fond */}
-      <Image
-        src="/four_a_bois.jpeg"  // Assure-toi que le chemin d'accès est correct
-        alt="Four à bois"
-        className="absolute inset-0 w-full h-full object-cover z-[-1] bg-fixed"
-        loading="lazy"
-        aria-hidden="true"
-        width={1920}   // Définis la largeur de l'image en pixels
-        height={1080}  // Définis la hauteur de l'image en pixels
-      />
     </section>
   );
 };

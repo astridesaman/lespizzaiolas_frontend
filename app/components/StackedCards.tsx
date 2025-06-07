@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useCallback } from "react";
+import { motion } from "framer-motion";
 
 interface CardData {
   sub: string;
@@ -88,9 +89,13 @@ const StackedCards: React.FC = () => {
       </div>
       <div className="right">
         {cardsData.map((card, index) => (
-          <div
+          <motion.div
             key={index}
             className="card"
+            initial={{ opacity: 0 }} // Carte initialement invisible et décalée
+            whileInView={{ opacity: 1}} // Devient visible et se place correctement
+            transition={{ duration: 0.6, delay: index * 0.3 }} // Animation avec délai pour chaque carte
+            viewport={{ once: true, amount: 0.5 }} // L'animation se déclenche quand 50% de la carte est dans la vue
             ref={(el) => {
               if (el && !cardsRef.current.includes(el)) {
                 cardsRef.current.push(el);
@@ -99,7 +104,7 @@ const StackedCards: React.FC = () => {
           >
             <div className="sub">{card.sub}</div>
             <div className="content">{card.content}</div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

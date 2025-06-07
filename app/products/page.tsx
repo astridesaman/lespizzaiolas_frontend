@@ -5,24 +5,27 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Modal from '../components/Modal';
 import { products } from '../data/products';
+import Navbar from '../Sections/Navbar';
 
 interface Product {
   id: string;
   name: string;
   description: string;
-  price: number;  
+  price: number;
   image: string;
-  category: 'classique' | 'signature' | 'sucree';  
+  category: 'classique' | 'signature' | 'sucree';
 }
 
-const Products: React.FC = () => {
+const ProductsPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<'classique' | 'signature' | 'sucree'>('classique');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const filteredProducts: Product[] = products.filter(
-    (product): product is Product => ['classique', 'signature', 'sucree'].includes(product.category)
-  ).filter((product) => product.category === selectedCategory);
+  const filteredProducts = products
+    .filter((product): product is Product =>
+      ['classique', 'signature', 'sucree'].includes(product.category)
+    )
+    .filter((product) => product.category === selectedCategory);
 
   const handleOpenModal = (product: Product) => {
     setSelectedProduct(product);
@@ -35,11 +38,12 @@ const Products: React.FC = () => {
   };
 
   return (
-    <section id="carte" className="py-20">
+    <>
+    <Navbar />
+    <section className="pt-32 pb-20">
       <h1 className="text-white text-4xl font-extrabold text-center mb-8">
         Nos pizzas artisanales cuites au feu de bois !
       </h1>
-
       <div className="flex justify-center gap-6 mb-10">
         {['classique', 'signature', 'sucree'].map((category) => (
           <motion.button
@@ -48,7 +52,6 @@ const Products: React.FC = () => {
             className={`py-2 px-6 rounded-full text-lg font-semibold ${selectedCategory === category ? 'bg-orange-500 text-white shadow-lg' : 'text-gray-300 hover:text-white'} transition-transform duration-300`}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            aria-label={`Afficher les pizzas ${category}`}
           >
             {category === 'classique' && 'Classiques'}
             {category === 'signature' && 'Signatures'}
@@ -79,7 +82,7 @@ const Products: React.FC = () => {
               height={224}
               className="w-full h-56 object-cover rounded-t-2xl"
             />
-           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div className="p-6">
               <h3 className="text-2xl font-bold text-orange-400 mb-3">{product.name}</h3>
               <p className="text-gray-400 mb-4">{product.description}</p>
               <p className="text-xl text-white font-bold mb-4">{product.price} CFP</p>
@@ -95,20 +98,16 @@ const Products: React.FC = () => {
         ))}
       </motion.div>
 
-      {/* Modal d'affichage du produit sélectionné */}
       {selectedProduct && (
         <Modal
           isOpen={isModalOpen}
           onClose={handleCloseModal}
-          title={selectedProduct?.name || 'Produit non sélectionné'}
-          productId={Number(selectedProduct?.id)} 
-          addToCart={(product) => {
-            console.log('Product added to cart:', product);
-          }}
-
+          title={selectedProduct?.name}
+          productId={Number(selectedProduct?.id)}
+          addToCart={(product) => console.log('Ajout au panier:', product)}
         >
           <div className="flex flex-col items-center">
-            {selectedProduct?.image && (
+            {selectedProduct.image && (
               <Image
                 src={selectedProduct.image}
                 alt={selectedProduct.name}
@@ -117,8 +116,8 @@ const Products: React.FC = () => {
                 className="rounded-xl mb-4"
               />
             )}
-            <p className="text-gray-700 text-center mb-4">{selectedProduct?.description}</p>
-            <p className="text-xl font-bold text-orange-500 mb-4">{selectedProduct?.price} CFP</p>
+            <p className="text-gray-700 text-center mb-4">{selectedProduct.description}</p>
+            <p className="text-xl font-bold text-orange-500 mb-4">{selectedProduct.price} CFP</p>
             <motion.a
               href="#order"
               className="bg-orange-500 text-white py-2 px-6 rounded-full shadow-md hover:bg-orange-600 transition-all"
@@ -131,7 +130,8 @@ const Products: React.FC = () => {
         </Modal>
       )}
     </section>
+    </>
   );
 };
 
-export default Products;
+export default ProductsPage;

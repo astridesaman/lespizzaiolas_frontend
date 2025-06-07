@@ -11,7 +11,7 @@ interface Location {
   lng: number;
 }
 
-// Import dynamique du MapContainer et ses composants
+// Import dynamique Leaflet
 const MapContainer = dynamic(() => import("react-leaflet").then(mod => mod.MapContainer), { ssr: false });
 const TileLayer = dynamic(() => import("react-leaflet").then(mod => mod.TileLayer), { ssr: false });
 const Marker = dynamic(() => import("react-leaflet").then(mod => mod.Marker), { ssr: false });
@@ -26,7 +26,7 @@ const FoodTruckMap: React.FC = () => {
       setL(leaflet);
       setCustomIcon(
         new leaflet.Icon({
-          iconUrl: "https://cdn-icons-png.flaticon.com/512/2942/2942262.png",
+          iconUrl: "\location-pin.png",
           iconSize: [40, 40],
         })
       );
@@ -39,25 +39,47 @@ const FoodTruckMap: React.FC = () => {
   ];
 
   return (
-    <section id="food-truck-map" className="py-12">
-      <h2 className="text-3xl font-bold text-center text-orange-500 mb-6">
-        Nos Emplacements
-      </h2>
+    <section id="food-truck-map" className="py-16 px-6">
+      <div className="max-w-5xl mx-auto flex flex-col items-center gap-8">
+        
+        {/* Titre */}
+        <h2 className="text-4xl text center font-bold text-orange-500 mb-8">
+          Nos Emplacements
+        </h2>
 
-      <div className="flex justify-center">
-        <div className="w-full md:w-3/4 h-96">
-          {L && customIcon && (
-            <MapContainer center={[-22.2712, 166.4382]} zoom={13} style={{ height: "100%", width: "100%" }}>
+        {/* Carte */}
+        {L && customIcon && (
+          <div className="w-full rounded-2xl overflow-hidden shadow-lg">
+            <MapContainer center={[-22.2712, 166.4382]} zoom={13} style={{ height: "400px", width: "100%" }}>
               <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-
               {foodTruckLocations.map((location) => (
                 <Marker key={location.id} position={[location.lat, location.lng]} icon={customIcon}>
                   <Popup>{location.name}</Popup>
                 </Marker>
               ))}
             </MapContainer>
-          )}
+          </div>
+        )}
+
+        {/* Infos dessous */}
+        <div className="w-full rounded-2xl p-8 shadow-lg text-white space-y-6 text-center">
+          <div>
+            <h3 className="text-2xl font-semibold mb-2">Adresse :</h3>
+            <p>Hôtel de ville,16 rue du général Mangin, BP K1, 98849 Nouméa</p>
+          </div>
+
+          <div>
+            <h3 className="text-2xl font-semibold mb-2">Horaires :</h3>
+            <p>Du lundi au vendredi : 12h - 22h</p>
+          </div>
+
+          <div>
+            <h3 className="text-2xl font-semibold mb-2">Téléphone :</h3>
+            <p>+687 ...</p>
+          </div>
+
         </div>
+
       </div>
     </section>
   );

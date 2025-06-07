@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
         </div>
         <div className="social-icon">
           <a
-            href="https://www.instagram.com/astride.smn/"
+            href="https://www.instagram.com/lespizzaiolas/"
             className="group"
             target="_blank"
             rel="noopener noreferrer"
