@@ -1,10 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Modal from '../components/Modal';
-import { products } from '../data/products';
 
 interface Product {
   id: string;
@@ -20,9 +20,26 @@ const Products: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const filteredProducts: Product[] = products.filter(
-    (product): product is Product => ['classique', 'signature', 'sucree'].includes(product.category)
-  ).filter((product) => product.category === selectedCategory);
+ const [products, setProducts] = useState<Product[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+      const fetchProducts = async () => {
+        setLoading(true);
+        try {
+          const res = await fetch(`/api/pizzas?category=${selectedCategory}`);
+          const data = await res.json();
+          setProducts(data);
+        } catch (err) {
+          console.error('Erreur de chargement:', err);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      fetchProducts();
+    }, [selectedCategory]);
+
 
   const handleOpenModal = (product: Product) => {
     setSelectedProduct(product);
@@ -63,7 +80,7 @@ const Products: React.FC = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        {filteredProducts.map((product, index) => (
+        {products.map((product, index) => (
           <motion.div
             key={product.id}
             className="product-card rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer"
@@ -102,9 +119,6 @@ const Products: React.FC = () => {
           onClose={handleCloseModal}
           title={selectedProduct?.name || 'Produit non sélectionné'}
           productId={Number(selectedProduct?.id)} 
-          addToCart={(product) => {
-            console.log('Product added to cart:', product);
-          }}
 
         >
           <div className="flex flex-col items-center">

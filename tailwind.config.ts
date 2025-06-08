@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+        spacing: {
+        'c-space': 'max-w-6xl mx-auto px-4',
+        },
       screens: {
         sm: '640px', // petite taille d'écran
         md: '768px', // taille moyenne
@@ -35,10 +38,8 @@ export default {
           500: '#62646C',
         },
       },
-      backgroundImage: {
-        terminal: "url('/assets/terminal.png')",
+    
       },
-    },
   },
   plugins: [],
 } satisfies Config;

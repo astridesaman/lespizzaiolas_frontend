@@ -7,7 +7,8 @@ import Contact from './Sections/Contact';
 import Footer from './Sections/Footer';
 import FeaturedProducts from './components/FeaturedProducts';
 import Values from './Sections/Values';
-import FoodTruckMap from './Sections/FoodTruckMap';
+import DynamicMap from './Sections/DynamicMap';
+import TestimonialsPage from './Sections/Testimonials';
 
 const App: React.FC = () => {
   return (
@@ -16,8 +17,9 @@ const App: React.FC = () => {
       <Hero />
       <FeaturedProducts/>
       <Values/>
+      <TestimonialsPage/>
       <Contact/>
-      <FoodTruckMap/>
+      <DynamicMap/>
       <Footer/>
     </main>
   );

@@ -1,29 +1,42 @@
-import emailjs from '@emailjs/browser';
-import { useRef, useState } from 'react';
+'use client';
 
+import { useRef, useState } from 'react';
+import emailjs from '@emailjs/browser';
+import { motion } from 'framer-motion';
+import AnimatedAlert from '../components/AnimatedAlert.tsx';
 import useAlert from '../hooks/useAlert.tsx';
-import Alert from '../components/Alert.tsx';
+
+const fadeIn = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i = 1) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.15,
+      duration: 0.6,
+    },
+  }),
+};
 
 const Contact = () => {
   const formRef = useRef();
-
   const { alert, showAlert, hideAlert } = useAlert();
+
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [isPro, setIsPro] = useState(false);
+  const [detailsPro, setDetailsPro] = useState({
+    company: '',
+    eventType: '',
+    date: '',
+    attendees: '',
+  });
 
-  // Sécurisation des clés API
   const serviceId = process.env.NEXT_PUBLIC_SERVICE_ID;
   const templateId = process.env.NEXT_PUBLIC_TEMPLATE_ID;
   const publicKey = process.env.NEXT_PUBLIC_PUBLIC_KEY;
-  
-  if (!serviceId || !templateId || !publicKey) {
-    console.error("Les clés API EmailJS ne sont pas définies !");
-  }
 
-  // Validation email
-  const validateEmail = (email) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
+  const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const handleChange = ({ target: { name, value } }) => {
     setForm({ ...form, [name]: value });
@@ -32,15 +45,13 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Vérification des champs requis
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
-      showAlert({ show: true, text: "Tous les champs sont requis.", type: "danger" });
+      showAlert({ show: true, text: 'Tous les champs sont requis.', type: 'danger' });
       return;
     }
 
-    // Validation email
     if (!validateEmail(form.email)) {
-      showAlert({ show: true, text: "Adresse email invalide.", type: "danger" });
+      showAlert({ show: true, text: 'Adresse email invalide.', type: 'danger' });
       return;
     }
 
@@ -55,7 +66,11 @@ const Contact = () => {
           to_name: 'Astride SAMAN',
           from_email: form.email,
           to_email: 'astridesmn@gmail.com',
-          message: form.message,
+          message:
+            form.message +
+            (isPro
+              ? `\n\n---\n[DEMANDE PRO]\nEntreprise : ${detailsPro.company}\nÉvénement : ${detailsPro.eventType}\nDate : ${detailsPro.date}\nParticipants : ${detailsPro.attendees}`
+              : ''),
         },
         publicKey
       )
@@ -63,10 +78,11 @@ const Contact = () => {
         () => {
           setLoading(false);
           showAlert({ show: true, text: 'Merci pour votre message 😃', type: 'success' });
-
           setTimeout(() => {
             hideAlert(false);
             setForm({ name: '', email: '', message: '' });
+            setDetailsPro({ company: '', eventType: '', date: '', attendees: '' });
+            setIsPro(false);
           }, 3000);
         },
         (error) => {
@@ -78,67 +94,166 @@ const Contact = () => {
   };
 
   return (
-    <section className="c-space my-20" id="contact">
-      {alert.show && <Alert {...alert} />}
+    <section
+      id="contact"
+      className="relative py-24 px-6 bg-gradient-to-br from-[#0f0f0f] via-[#1a1a1a] to-[#111111] text-white border-t border-[#292929]"
+    >
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,115,0,0.08)_0%,transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_70%,rgba(255,255,255,0.03)_0%,transparent_50%)]" />
+      </div>
 
-      <div className="relative min-h-screen flex items-center justify-center flex-col">
+      <div className="relative max-w-3xl mx-auto z-10">
+        <AnimatedAlert show={alert.show} text={alert.text} type={alert.type} />
 
-        <div className="contact-container">
-          <br />
-          <h3 className="head-text">Prenons contact !</h3>
-          <p className="text-lg text-white-600 mt-3">
-          Pour toute demande particulière, qu'il s'agisse d'une commande sur-mesure, d'une collaboration ou de toute autre requête...
-          </p>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="space-y-6"
+        >
+          <motion.h2
+            variants={fadeIn}
+            custom={1}
+            className="text-4xl font-bold text-center mb-4 text-primary-pizza"
+          >
+            📬 Prenons contact
+          </motion.h2>
 
-          <form ref={formRef} onSubmit={handleSubmit} className="mt-12 flex flex-col space-y-7">
-            <label className="space-y-3">
-              <span className="field-label">Nom complet</span>
+          <motion.p
+            variants={fadeIn}
+            custom={2}
+            className="text-center text-neutral-400 max-w-xl mx-auto mb-10"
+          >
+            Pour toute demande spéciale (commande, partenariat, événement privé),
+            remplissez ce formulaire et nous reviendrons vers vous rapidement.
+          </motion.p>
+
+          <motion.form
+            ref={formRef}
+            onSubmit={handleSubmit}
+            variants={fadeIn}
+            custom={3}
+            className="space-y-6 bg-[#1c1c1c]/80 p-8 rounded-2xl shadow-xl border border-[#2c2c2c] backdrop-blur"
+          >
+            <motion.div variants={fadeIn} custom={4}>
+              <label htmlFor="name" className="block text-sm mb-1 font-medium">Nom complet</label>
               <input
                 type="text"
                 name="name"
+                id="name"
                 value={form.name}
                 onChange={handleChange}
                 required
-                className="field-input"
                 placeholder="ex., John Doe"
-                aria-label="Nom complet"
+                className="w-full px-4 py-3 rounded-md bg-neutral-800 border border-neutral-600 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-pizza transition"
               />
-            </label>
+            </motion.div>
 
-            <label className="space-y-3">
-              <span className="field-label">Adresse Mail</span>
+            <motion.div variants={fadeIn} custom={5}>
+              <label htmlFor="email" className="block text-sm mb-1 font-medium">Adresse email</label>
               <input
                 type="email"
                 name="email"
+                id="email"
                 value={form.email}
                 onChange={handleChange}
                 required
-                className="field-input"
-                placeholder="ex., johndoe@gmail.com"
-                aria-label="Adresse email"
+                placeholder="ex., johndoe@mail.com"
+                className="w-full px-4 py-3 rounded-md bg-neutral-800 border border-neutral-600 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-pizza transition"
               />
-            </label>
+            </motion.div>
 
-            <label className="space-y-3">
-              <span className="field-label">Votre message</span>
+            <motion.div variants={fadeIn} custom={6} className="flex items-center gap-3">
+              <input
+                type="checkbox"
+                id="isPro"
+                checked={isPro}
+                onChange={() => setIsPro(!isPro)}
+                className="w-4 h-4 accent-primary-pizza"
+              />
+              <label htmlFor="isPro" className="text-sm">
+                Je contacte pour une entreprise ou un événement privé
+              </label>
+            </motion.div>
+
+            {isPro && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm mb-1 font-medium">Nom de l’entreprise</label>
+                  <input
+                    type="text"
+                    name="company"
+                    value={detailsPro.company}
+                    onChange={(e) => setDetailsPro({ ...detailsPro, company: e.target.value })}
+                    placeholder="ex., Nom de l'entreprise"
+                    className="w-full px-4 py-3 rounded-md bg-neutral-800 border border-neutral-600 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-yellow-600"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm mb-1 font-medium">Type d’événement</label>
+                  <input
+                    type="text"
+                    name="eventType"
+                    value={detailsPro.eventType}
+                    onChange={(e) => setDetailsPro({ ...detailsPro, eventType: e.target.value })}
+                    placeholder="ex., Comité d'entreprise, Anniversaire..."
+                    className="w-full px-4 py-3 rounded-md bg-neutral-800 border border-neutral-600 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-yellow-600"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm mb-1 font-medium">Date souhaitée</label>
+                  <input
+                    type="date"
+                    name="date"
+                    value={detailsPro.date}
+                    onChange={(e) => setDetailsPro({ ...detailsPro, date: e.target.value })}
+                    className="w-full px-4 py-3 rounded-md bg-neutral-800 border border-neutral-600 text-white focus:outline-none focus:ring-2 focus:ring-yellow-600"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm mb-1 font-medium">Nombre de personnes</label>
+                  <input
+                    type="number"
+                    name="attendees"
+                    value={detailsPro.attendees}
+                    onChange={(e) => setDetailsPro({ ...detailsPro, attendees: e.target.value })}
+                    placeholder="ex., 50"
+                    className="w-full px-4 py-3 rounded-md bg-neutral-800 border border-neutral-600 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-yellow-600"
+                  />
+                </div>
+              </div>
+            )}
+
+            <motion.div variants={fadeIn} custom={8}>
+              <label htmlFor="message" className="block text-sm mb-1 font-medium">Message</label>
               <textarea
                 name="message"
+                id="message"
                 value={form.message}
                 onChange={handleChange}
                 required
                 rows={5}
-                className="field-input"
-                placeholder="Partagez vos pensées et demandes..."
-                aria-label="Message"
+                placeholder="Votre message ici..."
+                className="w-full px-4 py-3 rounded-md bg-neutral-800 border border-neutral-600 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-pizza transition resize-none"
               />
-            </label>
+            </motion.div>
 
-            <button className="field-btn" type="submit" disabled={loading || !form.name || !form.email || !form.message}>
-              {loading ? 'Envoi en cours...' : 'Envoyer le message'}
-              <img src="/arrow_up.png" alt="arrow_up" className="field-btn_arrow" />
-            </button>
-          </form>
-        </div>
+            <motion.button
+              type="submit"
+              disabled={loading}
+              variants={fadeIn}
+              custom={9}
+              className="w-full flex items-center justify-center gap-2 bg-primary-pizza hover:bg-orange-500 text-white font-semibold py-3 rounded-md transition duration-200 disabled:opacity-50 shadow-md"
+            >
+              {loading ? 'Envoi en cours...' : 'Envoyer'}
+              <img src="/arrow_up.png" alt="Envoyer" className="w-4 h-4" />
+            </motion.button>
+          </motion.form>
+        </motion.div>
       </div>
     </section>
   );

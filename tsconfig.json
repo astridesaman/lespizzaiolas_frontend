@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/Sections/Contact.tsx", "tailwind.config.js", "app/Sections/Story/HistoryAndValues.jsx", "app/Sections/Hero.jsx", "app/components/StackedCards.tsx", "app/Sections/Values.jsx", "app/Sections/Testimonial.jsx", "app/components/TestimonialItem.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/Sections/Contact.ts", "tailwind.config.js", "app/Sections/Story/HistoryAndValues.jsx", "app/Sections/Hero.jsx", "app/components/StackedCards.tsx", "app/Sections/Values.jsx", "app/Sections/Testimonial.jsx", "app/components/TestimonialItem.jsx"],
   "exclude": ["node_modules"]
 }

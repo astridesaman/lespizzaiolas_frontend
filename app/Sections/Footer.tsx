@@ -4,77 +4,56 @@ import Image from 'next/image';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="c-space pt-7 pb-3 border-t border-black-300 flex flex-wrap justify-between items-center gap-5 bg-black text-white">
-      {/* Liens légaux */}
-      <div className="flex gap-2 text-white-500">
-        <Link href='/TermsConditions' className="hover:underline">
-          <p>Termes & Conditions</p>
-        </Link>
-        <span>|</span>
-        <Link href="#" className="hover:underline">
-          <p>Politique de confidentialité</p>
-        </Link>
-      </div>
+    <footer className="w-full bg-black text-white border-t border-zinc-800 px-6 pt-10 pb-6">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+        
+        {/* Liens légaux */}
+        <div className="flex flex-wrap gap-3 text-gray-400">
+          <Link href="/TermsConditions" className="hover:text-primary-pizza transition">
+            Termes & Conditions
+          </Link>
+          <span className="hidden sm:inline">|</span>
+          <Link href="#" className="hover:text-primary-pizza transition">
+            Politique de confidentialité
+          </Link>
+        </div>
 
-      {/* Réseaux sociaux */}
-      <div className="flex gap-3">
-        <div className="social-icon">
-          <a
-            href="#"
-            className="group"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Facebook"
-          >
+        {/* Réseaux sociaux */}
+        <div className="flex gap-4">
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="group">
             <Image
               src="/assets/icons8-facebook-50.svg"
               alt="Facebook"
-              width={40}
-              height={40}
-              className="w-8 h-8 group-hover:scale-110 group-hover:brightness-75 transition-transform duration-300"
+              width={32}
+              height={32}
+              className="group-hover:scale-110 group-hover:brightness-90 transition-transform duration-200"
             />
           </a>
-        </div>
-        <div className="social-icon">
-          <a
-            href="https://www.instagram.com/lespizzaiolas/"
-            className="group"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-          >
+          <a href="https://www.instagram.com/lespizzaiolas/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="group">
             <Image
               src="/assets/instagram.svg"
               alt="Instagram"
-              width={40}
-              height={40}
-              className="w-8 h-8 group-hover:scale-110 group-hover:brightness-75 transition-transform duration-300"
+              width={32}
+              height={32}
+              className="group-hover:scale-110 group-hover:brightness-90 transition-transform duration-200"
             />
           </a>
-        </div>
-        <div className="social-icon">
-          <a
-            href="#"
-            className="group"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="TikTok"
-          >
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="group">
             <Image
               src="/assets/icons8-tiktok (1).svg"
               alt="TikTok"
-              width={40}
-              height={40}
-              className="w-10 h-10 group-hover:scale-110 group-hover:brightness-75 transition-transform duration-300"
+              width={36}
+              height={36}
+              className="group-hover:scale-110 group-hover:brightness-90 transition-transform duration-200"
             />
           </a>
         </div>
-      </div>
 
-      {/* Droits réservés */}
-      <p className="text-white-500 text-sm text-center md:text-base">
-        © 2024 Les Pizzaiolas. Tous droits réservés.
-      </p>
+        {/* Droits réservés */}
+        <p className="text-center text-gray-500 text-xs md:text-sm">
+          © {new Date().getFullYear()} <span className="font-semibold text-white">Les Pizzaiolas</span>. Tous droits réservés.
+        </p>
+      </div>
     </footer>
   );
 };
